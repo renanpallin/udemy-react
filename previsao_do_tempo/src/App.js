@@ -13,8 +13,8 @@ export default class App extends React.Component {
         <h1>Lista de animais:</h1>
         <ul>
           {
-            animais.map(animal => {
-              return <li>{animal}</li>;
+            animais.map((animal, index) => {
+              return <li key={index}>{animal}</li>;
             })
           }
         </ul>
