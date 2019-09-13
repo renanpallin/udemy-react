@@ -2,6 +2,23 @@ import React from 'react';
 
 export default class App extends React.Component {
   render() {
-    return <h1>Olá</h1>
+    const animais = [
+      "Cachorro",
+      "Gato",
+      "Peixe"
+    ];
+
+    return (
+      <div>
+        <h1>Lista de animais:</h1>
+        <ul>
+          {
+            animais.map(animal => {
+              return <li>{animal}</li>;
+            })
+          }
+        </ul>
+      </div>
+    );
   }
 }
