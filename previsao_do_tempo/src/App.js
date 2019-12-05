@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-const API = 'https://api.hgbrasil.com/weather?woeid=455827&format=json-cors';
+const API = 'https://api.hgbrasil.com/weather?woeid=455827&format=json-cors&locale=pt';
 
 export default class App extends React.Component {
   state = {
@@ -29,6 +29,8 @@ export default class App extends React.Component {
               <th>Data</th>
               <th>Min.</th>
               <th>Max.</th>
+              <th>Previsão</th>
+              <th>Img</th>
             </tr>
           </thead>
           <tbody>
@@ -39,6 +41,12 @@ export default class App extends React.Component {
                     <td>{day.date}</td>
                     <td>{day.min}</td>
                     <td>{day.max}</td>
+                    <td>{day.description}</td>
+                    <td>
+                      <img
+                        src={`/weather-icons/clear_day.svg`}
+                        alt={day.description} />
+                    </td>
                   </tr>
                 );
               })
