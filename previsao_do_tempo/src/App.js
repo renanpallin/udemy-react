@@ -1,23 +1,26 @@
 import React from 'react';
 
-export default class App extends React.Component {
-  render() {
-    const animais = [
-      "Cachorro",
-      "Gato",
-      "Peixe"
-    ];
+const API = 'https://api.hgbrasil.com/weather?woeid=455827&format=json-cors';
 
+export default class App extends React.Component {
+  state = {
+    city: '',
+  };
+
+  componentDidMount() {
+    fetch(API)
+      .then(response => response.json())
+      .then(json => {
+        this.setState({
+          city: json.results.city_name,
+        });
+      });
+  }
+
+  render() {
     return (
       <div>
-        <h1>Lista de animais:</h1>
-        <ul>
-          {
-            animais.map((animal, index) => {
-              return <li key={index}>{animal}</li>;
-            })
-          }
-        </ul>
+        <h1>{this.state.city}</h1>
       </div>
     );
   }
