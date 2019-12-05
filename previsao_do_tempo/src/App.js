@@ -21,9 +21,30 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="container">
         <h1>{this.state.city}</h1>
-        {this.state.forecast.length}
+        <table className="striped centered">
+          <thead>
+            <tr>
+              <th>Data</th>
+              <th>Min.</th>
+              <th>Max.</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              this.state.forecast.map(day => {
+                return (
+                  <tr key={day.date}>
+                    <td>{day.date}</td>
+                    <td>{day.min}</td>
+                    <td>{day.max}</td>
+                  </tr>
+                );
+              })
+            }
+          </tbody>
+        </table>
       </div>
     );
   }
