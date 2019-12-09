@@ -15,6 +15,16 @@ export default class TodoApp extends React.Component {
       inputValue: e.target.value
     });
   }
+
+  onClick(e) {
+    const newTodo = this.state.inputValue;
+    const todoList = this.state.todos;
+
+    this.setState({
+      todos: [...todoList, newTodo],
+      inputValue: ''
+    });
+  }
   
   render() {
     const { inputValue, todos } = this.state;
@@ -24,7 +34,7 @@ export default class TodoApp extends React.Component {
         <input
           value={inputValue}
           onChange={e => this.onChangeInput(e)} />
-        <button>salvar</button>
+        <button onClick={e => this.onClick(e)}>salvar</button>
 
         <ul>
           {todos.map((todo, index) => {
