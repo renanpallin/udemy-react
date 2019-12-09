@@ -1,8 +1,9 @@
 import React from 'react';
+import TodoForm from './components/TodoForm';
+import TodoList from './components/TodoList';
 
 export default class TodoApp extends React.Component {
   state = {
-    inputValue: '',
     todos: [
       "lavar a louça",
       "estudar react",
@@ -10,37 +11,24 @@ export default class TodoApp extends React.Component {
     ],
   }
 
-  onChangeInput(e) {
-    this.setState({
-      inputValue: e.target.value
-    });
-  }
-
-  onClick(e) {
-    const newTodo = this.state.inputValue;
+  onSaveTodo(newTodo) {
     const todoList = this.state.todos;
 
     this.setState({
       todos: [...todoList, newTodo],
-      inputValue: ''
     });
   }
-  
+
   render() {
-    const { inputValue, todos } = this.state;
+    const { todos } = this.state;
     return (
       <div>
         <h1>Todo App</h1>
-        <input
-          value={inputValue}
-          onChange={e => this.onChangeInput(e)} />
-        <button onClick={e => this.onClick(e)}>salvar</button>
 
-        <ul>
-          {todos.map((todo, index) => {
-            return <li key={index}>{todo}</li>
-          })}
-        </ul>
+        <TodoForm
+          onSaveTodo={newTodo => this.onSaveTodo(newTodo)} />
+
+        <TodoList todos={todos} />
       </div>
     );
   }
