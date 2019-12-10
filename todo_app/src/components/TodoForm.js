@@ -4,12 +4,18 @@ import { setText, addTodo } from '../actions';
 
 const TodoForm = ({ text, setText, addTodo }) => {
   return (
-    <React.Fragment>
+    <form onSubmit={(e) => {
+      e.preventDefault();
+      addTodo(text);
+    }}>
       <input
         value={text}
         onChange={e => setText(e.target.value)} />
-      <button onClick={() => addTodo(text)}>salvar</button>
-    </React.Fragment>
+      <button
+        className="btn">
+          salvar
+      </button>
+    </form>
   );
 }
 

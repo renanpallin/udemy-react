@@ -4,7 +4,7 @@ import TodoList from './components/TodoList';
 
 const TodoApp = props => {
   return (
-    <div>
+    <div className="container">
       <h1>Todo App</h1>
       <TodoForm />
       <TodoList />
