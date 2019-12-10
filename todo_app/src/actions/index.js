@@ -9,3 +9,9 @@ export const addTodo = todo => ({
   type: ADD_TODO,
   todo
 });
+
+export const TOGGLE_TODO = 'TOGGLE_TODO';
+export const toggleTodo = todo => ({
+  type: TOGGLE_TODO,
+  todo
+});
