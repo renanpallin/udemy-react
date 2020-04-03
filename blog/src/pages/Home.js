@@ -15,7 +15,7 @@ export function HomePage() {
             <Col sm={6} md={4} key={index}>
               <PostCard post={post} />
               {/* Trocar por chunk array */}
-              <div style={{ height: 10 }}></div>
+              <div style={{ height: 20 }}></div>
             </Col>
           ))}
         </Row>
