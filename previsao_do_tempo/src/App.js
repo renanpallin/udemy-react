@@ -44,7 +44,7 @@ export default class App extends React.Component {
                     <td>{day.description}</td>
                     <td>
                       <img
-                        src={`/weather-icons/clear_day.svg`}
+                        src={`/weather-icons/${day.condition}.svg`}
                         alt={day.description} />
                     </td>
                   </tr>
