@@ -1,16 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { savePost } from '../actions/postActions';
+import { useDispatch } from 'react-redux';
 
 export function PostFormPage() {
+  const [title, setTitle] = useState('');
+  const [imgUrl, setImgUrl] = useState('');
+  const [body, setBody] = useState('aa');
+
+  const dispatch = useDispatch();
   return (
     <>
       <h1>Novo Post</h1>
-      <form onSubmit={e => e.preventDefault()}>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          dispatch(savePost({ title, imgUrl, body }));
+        }}
+      >
         <div className="form-group">
           <label for="input-title">Título</label>
           <input
             className="form-control"
             id="input-title"
-            aria-describedby="emailHelp"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
           />
           {/* <small id="emailHelp" className="form-text text-muted">
             We'll never share your email with anyone else.
@@ -22,6 +35,8 @@ export function PostFormPage() {
             className="form-control"
             id="input-img"
             placeholder="http://"
+            value={imgUrl}
+            onChange={(e) => setImgUrl(e.target.value)}
           />
         </div>
         <div class="form-group">
@@ -30,7 +45,9 @@ export function PostFormPage() {
             class="form-control"
             id="textarea-body"
             rows="24s"
-          ></textarea>
+            value={body}
+            onChange={(e) => setBody(e.target.value)}
+          />
         </div>
 
         <div className="form-group">

@@ -8,11 +8,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 import initial_state_mock from './initial_state_mock';
+import { SAVE_POST } from './actions/postActions';
 
 const store = createStore(
   combineReducers({
     posts(state = [], action) {
       switch (action.type) {
+        case SAVE_POST:
+          return [...state, action.post];
         default:
           return state;
       }
