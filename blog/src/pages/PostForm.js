@@ -1,24 +1,45 @@
-import React, { useState } from 'react';
-import { savePost } from '../actions/postActions';
-import { useDispatch } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { savePost } from '../actions';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory, useParams } from 'react-router-dom';
 
+// function usePostState() {
+
+// }
+ 
 export function PostFormPage() {
   const [title, setTitle] = useState('');
-  const [imgUrl, setImgUrl] = useState('');
-  const [body, setBody] = useState('aa');
+  const [img, setImg] = useState('');
+  const [body, setBody] = useState('');
+
+  const allPosts = useSelector((state) => state.posts);
+  const { postId } = useParams();
+  useEffect(() => {
+    if (postId) {
+      const postToEdit = allPosts.find((post) => post.id == postId);
+      if (postToEdit) {
+        setTitle(postToEdit.title);
+        setImg(postToEdit.img);
+        setBody(postToEdit.body);
+      }
+    }
+  }, []);
 
   const dispatch = useDispatch();
+  const history = useHistory();
   return (
     <>
       <h1>Novo Post</h1>
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          dispatch(savePost({ title, imgUrl, body }));
+          dispatch(savePost({ title, img, body })).then(() => {
+            history.push('/');
+          });
         }}
       >
         <div className="form-group">
-          <label for="input-title">Título</label>
+          <label htmlFor="input-title">Título</label>
           <input
             className="form-control"
             id="input-title"
@@ -30,19 +51,19 @@ export function PostFormPage() {
           </small> */}
         </div>
         <div className="form-group">
-          <label for="input-img">URL da imagem</label>
+          <label htmlFor="input-img">URL da imagem</label>
           <input
             className="form-control"
             id="input-img"
             placeholder="http://"
-            value={imgUrl}
-            onChange={(e) => setImgUrl(e.target.value)}
+            value={img}
+            onChange={(e) => setImg(e.target.value)}
           />
         </div>
-        <div class="form-group">
-          <label for="textarea-body">Corpo do post</label>
+        <div className="form-group">
+          <label htmlFor="textarea-body">Corpo do post</label>
           <textarea
-            class="form-control"
+            className="form-control"
             id="textarea-body"
             rows="24s"
             value={body}
@@ -51,7 +72,7 @@ export function PostFormPage() {
         </div>
 
         <div className="form-group">
-          <label for="input-author">Autor | Você =)</label>
+          <label htmlFor="input-author">Autor | Você =)</label>
           <input
             className="form-control"
             id="input-author"

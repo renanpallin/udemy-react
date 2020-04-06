@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
@@ -7,8 +7,15 @@ import { HomePage } from './pages/Home';
 import { Posts } from './pages/Posts';
 import { PostDetailPage } from './pages/PostDetail';
 import { PostFormPage } from './pages/PostForm';
+import { useDispatch } from 'react-redux';
+import { fetchPosts } from './actions/postActions';
 
 export default function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchPosts());
+  }, []);
+
   return (
     <div className="container">
       <Router>
@@ -28,6 +35,9 @@ export default function App() {
             </Route>
             <Route path="/post/:postId" exact>
               <PostDetailPage />
+            </Route>
+            <Route path="/post/:postId/edit" exact>
+              <PostFormPage mode="edit" />
             </Route>
           </Switch>
         </div>

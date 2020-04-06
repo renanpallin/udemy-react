@@ -4,7 +4,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 
 export function HomePage() {
-  const posts = useSelector(state => state.posts);
+  const posts = useSelector((state) => state.posts);
 
   return (
     <>
