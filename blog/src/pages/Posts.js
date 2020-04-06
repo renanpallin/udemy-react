@@ -7,10 +7,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 export function Posts() {
   // @todo: comparar o autor com o usuário logado
   const userPosts = useSelector((state) => state.posts);
+  const userName = useSelector((state) => state.auth.name);
+
   return (
     <>
       <h1>Posts Screen</h1>
-      <h4>Olá Maisa</h4>
+      <h4>Olá {userName}</h4>
 
       <ul className="list-group">
         {userPosts.map((post) => {

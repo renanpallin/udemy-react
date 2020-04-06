@@ -3,14 +3,16 @@ import { savePost } from '../actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 
-// function usePostState() {
-
-// }
- 
 export function PostFormPage() {
-  const [title, setTitle] = useState('');
-  const [img, setImg] = useState('');
-  const [body, setBody] = useState('');
+  const [post, setPost] = useState({
+    id: '',
+    author: '',
+    title: '',
+    img: '',
+    body: '',
+    createdAt: '',
+  });
+
 
   const allPosts = useSelector((state) => state.posts);
   const { postId } = useParams();
@@ -18,9 +20,7 @@ export function PostFormPage() {
     if (postId) {
       const postToEdit = allPosts.find((post) => post.id == postId);
       if (postToEdit) {
-        setTitle(postToEdit.title);
-        setImg(postToEdit.img);
-        setBody(postToEdit.body);
+        setPost(postToEdit);
       }
     }
   }, []);
@@ -33,7 +33,7 @@ export function PostFormPage() {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          dispatch(savePost({ title, img, body })).then(() => {
+          dispatch(savePost(post)).then(() => {
             history.push('/');
           });
         }}
@@ -43,8 +43,8 @@ export function PostFormPage() {
           <input
             className="form-control"
             id="input-title"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            value={post.title}
+            onChange={(e) => setPost({ ...post, title: e.target.value })}
           />
           {/* <small id="emailHelp" className="form-text text-muted">
             We'll never share your email with anyone else.
@@ -56,8 +56,8 @@ export function PostFormPage() {
             className="form-control"
             id="input-img"
             placeholder="http://"
-            value={img}
-            onChange={(e) => setImg(e.target.value)}
+            value={post.img}
+            onChange={(e) => setPost({ ...post, img: e.target.value })}
           />
         </div>
         <div className="form-group">
@@ -66,8 +66,8 @@ export function PostFormPage() {
             className="form-control"
             id="textarea-body"
             rows="24s"
-            value={body}
-            onChange={(e) => setBody(e.target.value)}
+            value={post.body}
+            onChange={(e) => setPost({ ...post, body: e.target.value })}
           />
         </div>
 
