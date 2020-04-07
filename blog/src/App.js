@@ -14,7 +14,7 @@ export default function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchPosts());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="container">

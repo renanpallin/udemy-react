@@ -1,6 +1,7 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { NavLink, useHistory } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { setEditingPost } from '../actions/editingPostActions';
 import { faEdit, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -9,6 +10,8 @@ export function Posts() {
   const userPosts = useSelector((state) => state.posts);
   const userName = useSelector((state) => state.auth.name);
 
+  const dispatch = useDispatch();
+  const history = useHistory();
   return (
     <>
       <h1>Posts Screen</h1>
@@ -22,9 +25,17 @@ export function Posts() {
               className="list-group-item d-flex justify-content-between align-items-center"
             >
               {post.title}
-              <NavLink to={`/post/${post.id}/edit`}>
+              <a
+                onClick={() => {
+                  dispatch(setEditingPost(post));
+                  history.push(`/post/${post.id}/edit`);
+                }}
+              >
                 <FontAwesomeIcon icon={faEdit} />
-              </NavLink>
+              </a>
+              {/* <NavLink to={`/post/${post.id}/edit`}>
+                <FontAwesomeIcon icon={faEdit} />
+              </NavLink> */}
             </li>
           );
         })}

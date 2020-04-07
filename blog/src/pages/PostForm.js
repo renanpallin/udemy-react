@@ -13,12 +13,11 @@ export function PostFormPage() {
     createdAt: '',
   });
 
-
   const allPosts = useSelector((state) => state.posts);
   const { postId } = useParams();
   useEffect(() => {
     if (postId) {
-      const postToEdit = allPosts.find((post) => post.id == postId);
+      const postToEdit = allPosts.find((post) => post.id === postId);
       if (postToEdit) {
         setPost(postToEdit);
       }

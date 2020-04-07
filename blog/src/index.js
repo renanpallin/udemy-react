@@ -6,8 +6,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import initial_state_mock from './initial_state_mock';
-
 import reduxThunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 

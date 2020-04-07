@@ -4,3 +4,9 @@ export const setValue = (key, value) => ({
   key,
   value,
 });
+
+export const SET_EDITING_POST = '@post/SET_EDITING_POST';
+export const setEditingPost = (post) => ({
+  type: SET_EDITING_POST,
+  post,
+});
