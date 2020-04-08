@@ -25,14 +25,15 @@ export function Posts() {
               className="list-group-item d-flex justify-content-between align-items-center"
             >
               {post.title}
-              <a
+              <button
+                className="btn btn-light"
                 onClick={() => {
                   dispatch(setEditingPost(post));
                   history.push(`/post/${post.id}/edit`);
                 }}
               >
                 <FontAwesomeIcon icon={faEdit} />
-              </a>
+              </button>
               {/* <NavLink to={`/post/${post.id}/edit`}>
                 <FontAwesomeIcon icon={faEdit} />
               </NavLink> */}
