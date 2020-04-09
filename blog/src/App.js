@@ -9,6 +9,7 @@ import { PostDetailPage } from './pages/PostDetail';
 import { PostFormPage } from './pages/PostForm';
 import { useDispatch } from 'react-redux';
 import { fetchPosts } from './actions/postActions';
+import { LoginPage } from './pages/Login';
 
 export default function App() {
   const dispatch = useDispatch();
@@ -26,6 +27,9 @@ export default function App() {
           <Switch>
             <Route path="/" exact>
               <HomePage />
+            </Route>
+            <Route path="/login" exact>
+              <LoginPage />
             </Route>
             <Route path="/meus-posts" exact>
               <Posts />

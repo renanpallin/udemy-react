@@ -15,3 +15,9 @@ export default function postReducer(state = [], action) {
       return state;
   }
 }
+
+// Ideia para selectors
+// export function onlyFiltered(state) {
+//   if (!state.filter) return state;
+//   return state.data.filter((post) => post.title.startsWith(state.filter));
+// }

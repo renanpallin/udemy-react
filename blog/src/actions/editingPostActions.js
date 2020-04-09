@@ -10,3 +10,8 @@ export const setEditingPost = (post) => ({
   type: SET_EDITING_POST,
   post,
 });
+
+export const CLEAR_EDITING_POST = '@post/CLEAR_EDITING_POST';
+export const clearEditingPost = () => ({
+  type: CLEAR_EDITING_POST,
+});

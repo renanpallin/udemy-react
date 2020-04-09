@@ -1,4 +1,5 @@
 import initial_state_mock from '../initial_state_mock';
+import { setIsLoading } from './isLoadingActions';
 
 export const SAVE_POST = '@post/SAVE_POST';
 // export const savePost = (post) => ({
@@ -14,14 +15,16 @@ export const savePost = (post) => (dispatch) => {
   return delay(500).then(() => dispatch(action));
 };
 
-const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+export const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 export const FETCH_POSTS = '@post/FETCH_POSTS';
 export const fetchPosts = () => (dispatch) => {
+  dispatch(setIsLoading(true));
   delay(500).then(() => {
     dispatch({
       type: FETCH_POSTS,
       posts: initial_state_mock.posts,
     });
+    dispatch(setIsLoading(false));
   });
 };

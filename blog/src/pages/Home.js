@@ -5,7 +5,9 @@ import { useSelector } from 'react-redux';
 
 export function HomePage() {
   const posts = useSelector((state) => state.posts);
+  const isLoading = useSelector((state) => state.isLoading);
 
+  if (isLoading) return 'loading...';
   return (
     <>
       <h1>Home screen</h1>
