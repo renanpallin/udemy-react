@@ -17,6 +17,14 @@ export function NavBar(props) {
         >
           Meus posts
         </NavLink>
+        <NavLink
+          activeClassName="active"
+          className="nav-link my-2 my-lg-0"
+          to="/login"
+          exact
+        >
+          Entrar
+        </NavLink>
       </ul>
     </nav>
   );
