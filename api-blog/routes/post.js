@@ -3,10 +3,17 @@ const router = express.Router();
 const passport = require('passport');
 
 const { posts } = require('../initial_state_mock');
+const db = require('../db/local');
 
 /* GET all posts */
 router.get('/', (req, res) => {
   res.json(posts);
+});
+
+/* GET a post */
+router.get('/:id', (req, res) => {
+  const { id } = req.params;
+  res.json(posts.find((post) => post.id == id));
 });
 
 /* Create a post */

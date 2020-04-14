@@ -7,7 +7,6 @@ var authRouter = require('./routes/auth');
 var postRouter = require('./routes/post');
 
 require('./auth/passport');
-const passport = require('passport');
 
 var app = express();
 
